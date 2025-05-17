@@ -9,7 +9,7 @@ Tools provided:
 
 Environment variables:
 - SUPABASE_URL: URL of your Supabase project
-- SUPABASE_SERVICE_KEY: service role key for your Supabase project
+- SUPABASE_ANON_KEY: service role key for your Supabase project
 """
 """
 Supabase MCP Server - A Model Context Protocol server for Supabase database operations.
@@ -22,7 +22,7 @@ This server provides tools for interacting with a Supabase database, including:
 
 Environment variables:
 - SUPABASE_URL: The URL of your Supabase project
-- SUPABASE_SERVICE_KEY: The service role key for your Supabase project
+- SUPABASE_ANON_KEY: The service role key for your Supabase project
 """
 
 import os
@@ -58,11 +58,11 @@ async def supabase_lifespan(server: FastMCP) -> AsyncIterator[SupabaseContext]:
     """
     # Get environment variables
     supabase_url = os.getenv("SUPABASE_URL")
-    supabase_key = os.getenv("SUPABASE_SERVICE_KEY")
+    supabase_key = os.getenv("SUPABASE_ANON_KEY")
     
     if not supabase_url or not supabase_key:
         raise ValueError(
-            "Missing environment variables. Please set SUPABASE_URL and SUPABASE_SERVICE_KEY."
+            "Missing environment variables. Please set SUPABASE_URL and SUPABASE_ANON_KEY."
         )
     
     # Initialize Supabase client
